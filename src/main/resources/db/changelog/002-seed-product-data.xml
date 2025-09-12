@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+          http://www.liquibase.org/xml/ns/dbchangelog
+          https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.26.xsd">
+
+    <changeSet id="002-seed-price-data" author="you" runOnChange="false" runAlways="false">
+        <loadData
+                tableName="product"
+                file="classpath:db/data/product.csv"
+                separator=","
+                encoding="UTF-8"
+                quotchar="&quot;"/>
+    </changeSet>
+
+</databaseChangeLog>

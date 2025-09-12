@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: restclientpoc-product-service
+  datasource:
+    url: jdbc:h2:mem:products;DB_CLOSE_DELAY=-1 #H2 stays open
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    #defer-datasource-initialization: true #table created by Hibernates first, then rung data/schema sql files, to use with (ddl-auto) + data.sql,
+    hibernate:
+      ddl-auto: none
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+  sql:
+    init:
+      mode: never #disable data.sql
+server:
+  port: 7071
+
+#logging:
+#  level:
+#    liquibase: info #debug
