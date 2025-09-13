@@ -1,8 +1,7 @@
-package com.example.restclientpocproductservice.controller;
+package com.example.restclientpocproductservice.web;
 
-import com.example.restclientpocproductservice.api.response.ProductResponse;
-import com.example.restclientpocproductservice.common.api.ApiResponse;
-import com.example.restclientpocproductservice.service.ProductService;
+import com.example.restclientpocproductservice.web.dto.ProductResponse;
+import com.example.restclientpocproductservice.service.ProductQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +15,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductQueryService productQueryService;
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<ProductResponse>>> getProducts() {
         return ResponseEntity.ok(
                 ApiResponse.<List<ProductResponse>>builder()
-                        .data(productService.getProducts())
+                        .data(productQueryService.getProducts())
                         .build()
         );
     }

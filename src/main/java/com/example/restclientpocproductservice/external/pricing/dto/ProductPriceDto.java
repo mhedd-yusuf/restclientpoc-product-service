@@ -1,4 +1,4 @@
-package com.example.restclientpocproductservice.api.response;
+package com.example.restclientpocproductservice.external.pricing.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +11,12 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponse {
-
+public class ProductPriceDto {
     private Long id;
 
-    private String name;
-    private BigDecimal price;
+    private BigDecimal amount;
+
+    private String currency;
+
+    private String priceType;
 }

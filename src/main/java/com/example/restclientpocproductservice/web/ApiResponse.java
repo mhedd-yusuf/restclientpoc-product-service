@@ -1,4 +1,4 @@
-package com.example.restclientpocproductservice.common.api;
+package com.example.restclientpocproductservice.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

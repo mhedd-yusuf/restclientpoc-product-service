@@ -20,9 +20,17 @@ spring:
   sql:
     init:
       mode: never #disable data.sql
+  profiles:
+    active: restClient
 server:
   port: 7071
 
 #logging:
 #  level:
 #    liquibase: info #debug
+
+client:
+  pricing:
+    baseUrl: http://localhost:7070/prices
+    connectTimeOut: 2s
+    readTimeOut: 5s
