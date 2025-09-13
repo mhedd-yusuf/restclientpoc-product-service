@@ -34,3 +34,10 @@ client:
     baseUrl: http://localhost:7070/prices
     connectTimeOut: 2s
     readTimeOut: 5s
+
+pagination:
+  default-size: 30
+  max-size: 70
+  clamp-to-last: false
+  max-offset: 0
+  allowed-sort: id
