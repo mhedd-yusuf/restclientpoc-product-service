@@ -2,7 +2,6 @@ package com.example.restclientpocproductservice.external.pricing;
 
 import com.example.restclientpocproductservice.external.pricing.dto.ProductPriceDto;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface PricingClient {

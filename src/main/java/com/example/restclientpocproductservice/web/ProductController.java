@@ -27,9 +27,10 @@ public class ProductController {
             size = 30,
             direction = Sort.Direction.ASC)
                                                                           Pageable pageable) {
+        List<ProductResponse> products = productQueryService.findProducts(pageable);
         return ResponseEntity.ok(
                 ApiResponse.<List<ProductResponse>>builder()
-                        .data(productQueryService.findProducts(pageable))
+                        .data(products)
                         .build()
         );
     }
