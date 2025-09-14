@@ -2,6 +2,7 @@ package com.example.restclientpocproductservice.service;
 
 import com.example.restclientpocproductservice.common.PageableSanitizer;
 import com.example.restclientpocproductservice.domain.repository.ProductRepository;
+import com.example.restclientpocproductservice.exception.ProductNotFoundException;
 import com.example.restclientpocproductservice.external.pricing.PricingClient;
 import com.example.restclientpocproductservice.external.pricing.dto.ProductPriceDto;
 import com.example.restclientpocproductservice.mapper.ToProductResponseMapper;
@@ -27,7 +28,7 @@ public class ProductQueryService {
     private final PricingClient pricingClient;
     private final PageableSanitizer pageableSanitizer;
 
-    public List<ProductResponse> getProducts(Pageable pageable) {
+    public List<ProductResponse> findProducts(Pageable pageable) {
         Pageable safePageable = pageableSanitizer.apply(pageable);
         // Call price api, to get prices
         Map<Long, ProductPriceDto> prices = pricingClient.getPrices(PAGE_NUM, PAGE_SIZE)
@@ -45,7 +46,7 @@ public class ProductQueryService {
                 .toList();
     }
 
-    public ProductResponse getProduct(Long id) {
+    public ProductResponse findProduct(Long id) {
         // Get the product form the DB first
         return productRepository.findById(id)
                 .map(product -> {
@@ -53,6 +54,8 @@ public class ProductQueryService {
                     ProductPriceDto ProductPrice = pricingClient.getPrices(id);
                     return toProductResponseMapper.apply(product, ProductPrice);
                 })
-                .orElseThrow(() -> new NoSuchElementException("Product with Id: " + id + " Not found"));
+                .orElseThrow(() -> {
+                    return new ProductNotFoundException("Product with Id: " + id + " Not found");
+                });
     }
 }

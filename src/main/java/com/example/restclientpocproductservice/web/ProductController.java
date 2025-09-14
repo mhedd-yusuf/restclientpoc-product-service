@@ -29,7 +29,7 @@ public class ProductController {
                                                                           Pageable pageable) {
         return ResponseEntity.ok(
                 ApiResponse.<List<ProductResponse>>builder()
-                        .data(productQueryService.getProducts(pageable))
+                        .data(productQueryService.findProducts(pageable))
                         .build()
         );
     }
@@ -38,7 +38,7 @@ public class ProductController {
     public ResponseEntity<ApiResponse<ProductResponse>> getProduct(@PathVariable Long id) {
         return ResponseEntity.ok(
                 ApiResponse.<ProductResponse>builder()
-                        .data(productQueryService.getProduct(id))
+                        .data(productQueryService.findProduct(id))
                         .build()
         );
     }
