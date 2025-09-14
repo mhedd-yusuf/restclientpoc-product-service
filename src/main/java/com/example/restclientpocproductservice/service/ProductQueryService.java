@@ -54,8 +54,6 @@ public class ProductQueryService {
                     ProductPriceDto ProductPrice = pricingClient.getPrices(id);
                     return toProductResponseMapper.apply(product, ProductPrice);
                 })
-                .orElseThrow(() -> {
-                    return new ProductNotFoundException("Product with Id: " + id + " Not found");
-                });
+                .orElseThrow(() -> new ProductNotFoundException("Product with Id: " + id + " Not found"));
     }
 }
